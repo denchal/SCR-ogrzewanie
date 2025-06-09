@@ -74,7 +74,7 @@ W systemie zdefiniowano typy danych:
 
 `BoilerCommand` – komenda z harmonogramu do pieca.
 
-Water – medium grzewcze w obiegu.
+`Water` – medium grzewcze w obiegu.
 
 Porty są typu data port (dla danych ciągłych) i event port (dla zdarzeń systemowych, np. awarii).
 
