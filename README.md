@@ -1,72 +1,80 @@
-# Systemy czasu rzeczywistego - projekt
+# Systemy czasu rzeczywistego – projekt
 
 ## Tytuł modelu:
 
 System centralnego ogrzewania budynku
 
-## Dane studenta:
+## Dane studenta
+`Michał Gomułczak`
+`mgomulczak@student.agh.edu.pl`
 
-Michał Gomułczak
-
-mgomulczak@student.agh.edu.pl
-
-## Opis modelowanego systemu:
+## Opis modelowanego systemu
 
 ### Opis ogólny
-```
-Zamodelowany system jest systemem centralnego ogrzewania
-w budynku mieszkalnym lub użytkowym, którego celem jest
-utrzymywanie zadanej temperatury w poszczególnych pomieszczeniach.
-System składa się z pieca grzewczego, czujników temperatury,
-termostatów pokojowych, zaworów regulujących przepływ ciepła,
-oraz elementów sterujących.
-```
-### Opis szczegółowy
-```
-System ogrzewania obsługuje kilka niezależnych stref grzewczych
-(np. pokoje, korytarze, łazienki). Każda strefa posiada
-termostat oraz czujnik temperatury, które mierzą aktualne warunki
-i zgłaszają zapotrzebowanie na ciepło.
 
-Piec (kocioł gazowy lub elektryczny) dostarcza ciepło do
-instalacji, a przepływ czynnika grzewczego jest regulowany
-zaworami w zależności od potrzeb zgłaszanych przez strefy.
+System centralnego ogrzewania budynku ma na celu utrzymanie zadanych temperatur w poszczególnych strefach budynku (np. pokoje, łazienki). System składa się z pieca grzewczego, czujników temperatury, termostatów pokojowych, zaworów sterujących przepływem czynnika grzewczego, logiki sterującej oraz mechanizmów bezpieczeństwa.
 
-System posiada logikę nadrzędną, która decyduje, kiedy należy
-uruchomić piec, w oparciu o zbiorcze zapotrzebowanie. Jeżeli
-żadna ze stref nie potrzebuje ciepła, piec pozostaje w trybie
-czuwania. W przypadku wystąpienia zapotrzebowania – piec
-zostaje włączony i utrzymuje zadaną temperaturę w obiegu.
+System obsługuje tryb harmonogramu czasowego oraz tryb awaryjny, który wymusza minimalne ogrzewanie niezależnie od warunków zadanych przez użytkownika.
 
-System uwzględnia tryb nocny oraz harmonogramy czasowe,
-które zmieniają temperatury zadane w zależności od pory dnia
-lub obecności mieszkańców.
+### Opis funkcjonalny
 
-Jeżeli wykryta zostanie awaria (np. przegrzanie kotła, brak
-wody w instalacji), system automatycznie zatrzymuje piec
-i informuje użytkownika.
+System został zamodelowany w języku AADL w pakiecie HeatingSystem. Składa się z komponentów reprezentujących urządzenia (devices), procesy sterujące (processes), magistrale (bus) i główny system nadrzędny (HeatingControlSystem).
 
-Możliwe jest także ręczne włączenie trybu awaryjnego (np. na czas mrozów),
-który wymusza minimalne ogrzewanie wszystkich stref
-niezależnie od ustawień użytkownika.
-```
-### Komponenty:
-```
-system HeatingControlSystem – główny system sterujący pracą ogrzewania
+W modelu uwzględniono dwie niezależne strefy grzewcze. Każda strefa posiada swój czujnik temperatury, termostat i zawór strefowy.
 
-device RoomThermostat – termostat pokojowy z możliwością ustawienia temperatury
+`RoomThermostat` – odbiera aktualną temperaturę z czujnika oraz generuje zapotrzebowanie na ciepło.
 
-device TemperatureSensor – czujnik mierzący rzeczywistą temperaturę w pomieszczeniu
+`TemperatureSensor` – dostarcza aktualną temperaturę z pomieszczenia.
 
-device Boiler – urządzenie grzewcze (piec, kocioł)
+`ZoneValve` – steruje przepływem czynnika grzewczego na podstawie poleceń sterujących.
 
-device ZoneValve – zawór kontrolujący przepływ czynnika grzewczego do strefy
+`Boiler` – źródło ciepła. Otrzymuje sygnał zapotrzebowania oraz komendy harmonogramu. Odpowiada za rozprowadzanie czynnika grzewczego.
 
-device EmergencySwitch – przycisk lub przekaźnik włączający tryb awaryjny
+`Distributor` – agreguje zapotrzebowania ze stref i steruje zaworami oraz sygnalizuje zbiorcze zapotrzebowanie do pieca.
 
-thread Scheduler – wątek realizujący harmonogram czasowy ogrzewania
+`Scheduler` – proces generujący harmonogramowe polecenia sterujące (np. ustawienia temperatur dziennych/nocnych).
 
-thread SafetyMonitor – wątek nadzorujący stan bezpieczeństwa systemu (np. awarie)
+`SafetyMonitor` – proces nadzorujący bezpieczeństwo systemu (np. wykrycie przegrzania, braku wody).
 
-bus CommunicationBus – magistrala komunikacyjna między komponentami systemu
-```
+`EmergencySwitch` – urządzenie aktywujące tryb awaryjny.
+
+`SchedulerToBoilerBus` – magistrala przesyłająca komendy harmonogramu do pieca.
+
+## Funkcje specjalne
+
+Tryb nocny / harmonogramowy – realizowany przez proces Scheduler, który steruje temperaturami zadanymi w czasie.
+
+Tryb awaryjny – aktywowany przez EmergencySwitch, wymusza minimalne grzanie niezależnie od zapotrzebowania.
+
+Zabezpieczenia – w przypadku wykrycia awarii przez SafetyMonitor, piec przechodzi w tryb bezpieczny i zostaje wyłączony.
+
+## Struktura modelu
+
+Model zawiera pełną instancję implementacyjną systemu HeatingControlSystem.impl, w której znajdują się wszystkie podsystemy oraz połączenia między komponentami. Uwzględniono następujące powiązania:
+
+Komunikacja pomiędzy czujnikami a termostatami.
+
+Przekazywanie zapotrzebowania cieplnego do dystrybutora.
+
+Sterowanie zaworami na podstawie decyzji dystrybutora.
+
+Sterowanie piecem w zależności od zapotrzebowania oraz harmonogramu.
+
+Sygnalizacja błędów i aktywacja trybu awaryjnego.
+
+## Dane i porty
+
+W systemie zdefiniowano typy danych:
+
+`Temperature` – temperatura zadana lub aktualna.
+
+`HeatDemand` – zapotrzebowanie cieplne strefy.
+
+`ValveCommand` – komenda sterująca zaworem.
+
+`BoilerCommand` – komenda z harmonogramu do pieca.
+
+Water – medium grzewcze w obiegu.
+
+Porty są typu data port (dla danych ciągłych) i event port (dla zdarzeń systemowych, np. awarii).
+
