@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aadl2="http://aadl.info/AADL/2.0" xmlns:instance="http://aadl.info/AADL/2.0/instance">
+  <instance:SystemInstance name="ZoneValve_impl_Instance" category="device">
+    <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+      <property href="../WaterFlow.aadl#WaterFlow.WaterFlowRate"/>
+      <ownedValue>
+        <ownedValue xsi:type="aadl2:IntegerLiteral" value="20"/>
+      </ownedValue>
+      <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.10/@ownedPropertyAssociation.0"/>
+    </ownedPropertyAssociation>
+    <featureInstance name="valve_control" type="/1">
+      <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.10/@ownedDataPort.0"/>
+    </featureInstance>
+    <classifier xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.ZoneValve.impl"/>
+    <systemOperationMode name="No Modes"/>
+    <componentImplementation xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.ZoneValve.impl"/>
+  </instance:SystemInstance>
+  <instance:ComponentInstance name="HeatingSystem::ValveCommand" category="data">
+    <classifier xsi:type="aadl2:DataType" href="../HeatingSystem.aadl#HeatingSystem.ValveCommand"/>
+  </instance:ComponentInstance>
+</xmi:XMI>

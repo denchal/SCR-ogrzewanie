@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aadl2="http://aadl.info/AADL/2.0" xmlns:instance="http://aadl.info/AADL/2.0/instance">
+  <instance:SystemInstance name="TemperatureSensor_impl_Instance" category="device">
+    <featureInstance name="current_temp" direction="out" type="/1">
+      <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.8/@ownedDataPort.0"/>
+    </featureInstance>
+    <classifier xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.TemperatureSensor.impl"/>
+    <systemOperationMode name="No Modes"/>
+    <componentImplementation xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.TemperatureSensor.impl"/>
+  </instance:SystemInstance>
+  <instance:ComponentInstance name="HeatingSystem::Temperature" category="data">
+    <classifier xsi:type="aadl2:DataType" href="../HeatingSystem.aadl#HeatingSystem.Temperature"/>
+  </instance:ComponentInstance>
+</xmi:XMI>

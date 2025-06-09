@@ -1,0 +1,4 @@
+property set WaterFlow is
+  WaterFlowRate : aadlinteger applies to (device);
+  MaxTotalFlow : aadlinteger applies to (system);
+end WaterFlow;

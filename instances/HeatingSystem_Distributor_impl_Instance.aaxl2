@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aadl2="http://aadl.info/AADL/2.0" xmlns:instance="http://aadl.info/AADL/2.0/instance">
+  <instance:SystemInstance name="Distributor_impl_Instance" category="device">
+    <featureInstance name="water_intake" type="/1">
+      <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.22/@ownedDataPort.0"/>
+    </featureInstance>
+    <featureInstance name="zone1_heat_demand" type="/2">
+      <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.22/@ownedDataPort.1"/>
+    </featureInstance>
+    <featureInstance name="zone2_heat_demand" type="/2">
+      <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.22/@ownedDataPort.2"/>
+    </featureInstance>
+    <featureInstance name="zone1_water_output" direction="out" type="/3">
+      <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.22/@ownedDataPort.3"/>
+    </featureInstance>
+    <featureInstance name="zone2_water_output" direction="out" type="/3">
+      <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.22/@ownedDataPort.4"/>
+    </featureInstance>
+    <featureInstance name="total_heat_demand" direction="out" type="/2">
+      <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.22/@ownedDataPort.5"/>
+    </featureInstance>
+    <classifier xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.Distributor.impl"/>
+    <systemOperationMode name="No Modes"/>
+    <componentImplementation xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.Distributor.impl"/>
+  </instance:SystemInstance>
+  <instance:ComponentInstance name="HeatingSystem::Water" category="data">
+    <classifier xsi:type="aadl2:DataType" href="../HeatingSystem.aadl#HeatingSystem.Water"/>
+  </instance:ComponentInstance>
+  <instance:ComponentInstance name="HeatingSystem::HeatDemand" category="data">
+    <classifier xsi:type="aadl2:DataType" href="../HeatingSystem.aadl#HeatingSystem.HeatDemand"/>
+  </instance:ComponentInstance>
+  <instance:ComponentInstance name="HeatingSystem::ValveCommand" category="data">
+    <classifier xsi:type="aadl2:DataType" href="../HeatingSystem.aadl#HeatingSystem.ValveCommand"/>
+  </instance:ComponentInstance>
+</xmi:XMI>

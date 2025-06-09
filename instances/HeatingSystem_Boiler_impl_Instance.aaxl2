@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aadl2="http://aadl.info/AADL/2.0" xmlns:instance="http://aadl.info/AADL/2.0/instance">
+  <instance:SystemInstance name="Boiler_impl_Instance" category="device">
+    <featureInstance name="heat_demand" type="/1">
+      <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.14/@ownedDataPort.0"/>
+    </featureInstance>
+    <featureInstance name="scheduler_command" type="/2">
+      <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.14/@ownedDataPort.1"/>
+    </featureInstance>
+    <featureInstance name="boiler_control" direction="out" type="/3">
+      <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.14/@ownedDataPort.2"/>
+    </featureInstance>
+    <featureInstance name="water_outtake" direction="out" type="/4">
+      <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.14/@ownedDataPort.3"/>
+    </featureInstance>
+    <featureInstance name="error_signal" category="eventPort">
+      <feature xsi:type="aadl2:EventPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.14/@ownedEventPort.0"/>
+    </featureInstance>
+    <featureInstance name="emergency_mode" category="eventPort">
+      <feature xsi:type="aadl2:EventPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.14/@ownedEventPort.1"/>
+    </featureInstance>
+    <classifier xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.Boiler.impl"/>
+    <systemOperationMode name="No Modes"/>
+    <componentImplementation xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.Boiler.impl"/>
+  </instance:SystemInstance>
+  <instance:ComponentInstance name="HeatingSystem::HeatDemand" category="data">
+    <classifier xsi:type="aadl2:DataType" href="../HeatingSystem.aadl#HeatingSystem.HeatDemand"/>
+  </instance:ComponentInstance>
+  <instance:ComponentInstance name="HeatingSystem::BoilerCommand" category="data">
+    <classifier xsi:type="aadl2:DataType" href="../HeatingSystem.aadl#HeatingSystem.BoilerCommand"/>
+  </instance:ComponentInstance>
+  <instance:ComponentInstance name="HeatingSystem::Temperature" category="data">
+    <classifier xsi:type="aadl2:DataType" href="../HeatingSystem.aadl#HeatingSystem.Temperature"/>
+  </instance:ComponentInstance>
+  <instance:ComponentInstance name="HeatingSystem::Water" category="data">
+    <classifier xsi:type="aadl2:DataType" href="../HeatingSystem.aadl#HeatingSystem.Water"/>
+  </instance:ComponentInstance>
+</xmi:XMI>
