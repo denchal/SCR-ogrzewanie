@@ -78,3 +78,6 @@ Water – medium grzewcze w obiegu.
 
 Porty są typu data port (dla danych ciągłych) i event port (dla zdarzeń systemowych, np. awarii).
 
+## Diagram
+![diagram](diagram.svg)
+
