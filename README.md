@@ -38,7 +38,7 @@ W modelu uwzględniono dwie niezależne strefy grzewcze. Każda strefa posiada s
 
 `EmergencySwitch` – urządzenie aktywujące tryb awaryjny.
 
-`SchedulerToBoilerBus` – magistrala przesyłająca komendy harmonogramu do pieca.
+`CommBus` – magistrala przesyłająca komendy do pieca.
 
 ## Funkcje specjalne
 
@@ -72,12 +72,9 @@ W systemie zdefiniowano typy danych:
 
 `ValveCommand` – komenda sterująca zaworem.
 
-`BoilerCommand` – komenda z harmonogramu do pieca.
-
-`Water` – medium grzewcze w obiegu.
+`BoilerCommand` – komenda z harmonogramu do pieca
 
 Porty są typu data port (dla danych ciągłych) i event port (dla zdarzeń systemowych, np. awarii).
 
 ## Diagram
 ![diagram](diagram.svg)
-
