@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<instance:SystemInstance xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aadl2="http://aadl.info/AADL/2.0" xmlns:instance="http://aadl.info/AADL/2.0/instance" name="ErrorSignal_impl_Instance" category="process">
+  <featureInstance name="error" category="eventPort" direction="out">
+    <feature xsi:type="aadl2:EventPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.7/@ownedEventPort.0"/>
+  </featureInstance>
+  <classifier xsi:type="aadl2:ProcessImplementation" href="../HeatingSystem.aadl#HeatingSystem.ErrorSignal.impl"/>
+  <systemOperationMode name="No Modes"/>
+  <componentImplementation xsi:type="aadl2:ProcessImplementation" href="../HeatingSystem.aadl#HeatingSystem.ErrorSignal.impl"/>
+</instance:SystemInstance>

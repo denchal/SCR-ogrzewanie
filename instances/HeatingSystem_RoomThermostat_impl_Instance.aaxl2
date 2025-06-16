@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aadl2="http://aadl.info/AADL/2.0" xmlns:instance="http://aadl.info/AADL/2.0/instance">
   <instance:SystemInstance name="RoomThermostat_impl_Instance" category="device">
-    <featureInstance name="set_temp" type="/1">
-      <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedDataPort.0"/>
+    <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+      <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.GrossWeight"/>
+      <ownedValue>
+        <ownedValue xsi:type="aadl2:RealLiteral" value="0.3">
+          <unit href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#/0/@ownedPropertyType.0/@ownedLiteral.0"/>
+        </ownedValue>
+      </ownedValue>
+      <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.10/@ownedPropertyAssociation.0"/>
+    </ownedPropertyAssociation>
+    <featureInstance name="heat_demand" direction="out" type="/1">
+      <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.9/@ownedDataPort.0"/>
     </featureInstance>
-    <featureInstance name="current_temp" type="/1">
-      <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedDataPort.1"/>
-    </featureInstance>
-    <featureInstance name="heat_demand" direction="out" type="/2">
-      <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedDataPort.2"/>
+    <featureInstance name="conn_bus" category="busAccess" type="/2">
+      <feature xsi:type="aadl2:BusAccess" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.9/@ownedBusAccess.0"/>
     </featureInstance>
     <classifier xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.RoomThermostat.impl"/>
     <systemOperationMode name="No Modes"/>
     <componentImplementation xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.RoomThermostat.impl"/>
   </instance:SystemInstance>
-  <instance:ComponentInstance name="HeatingSystem::Temperature" category="data">
-    <classifier xsi:type="aadl2:DataType" href="../HeatingSystem.aadl#HeatingSystem.Temperature"/>
-  </instance:ComponentInstance>
   <instance:ComponentInstance name="HeatingSystem::HeatDemand" category="data">
     <classifier xsi:type="aadl2:DataType" href="../HeatingSystem.aadl#HeatingSystem.HeatDemand"/>
+  </instance:ComponentInstance>
+  <instance:ComponentInstance name="HeatingSystem::ConnBus" category="bus">
+    <classifier xsi:type="aadl2:BusType" href="../HeatingSystem.aadl#HeatingSystem.ConnBus"/>
   </instance:ComponentInstance>
 </xmi:XMI>

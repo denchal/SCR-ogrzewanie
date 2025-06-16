@@ -1,6 +1,6 @@
 package HeatingSystem
 public
-	with WaterFlow;
+	with sei;
 
 -- Definicje typów danych
 data Temperature
@@ -15,156 +15,157 @@ end ValveCommand;
 data BoilerCommand
 end BoilerCommand;
 
-data Water
-end Water;
-
 -- Główna aplikacja systemu
 system HeatingControlSystem
-features
-    emergency_mode: in event port;
-properties
-	WaterFlow::MaxTotalFlow => 100;
 end HeatingControlSystem;
 
+
+process EmergencySwitch
+features
+    emergency_mode: out event port;
+end EmergencySwitch;
+
+process implementation EmergencySwitch.impl
+end EmergencySwitch.impl;
+
+process ErrorSignal
+features
+    error: out event port;
+end ErrorSignal;
+
+process implementation ErrorSignal.impl
+end ErrorSignal.impl;
 
 -- Termostat pokojowy
 device RoomThermostat
 features
-    set_temp: in data port Temperature;
-    current_temp: in data port Temperature;
     heat_demand: out data port HeatDemand;
+    conn_bus: requires bus access ConnBus;
 end RoomThermostat;
 
 device implementation RoomThermostat.impl
+	properties
+		SEI::GrossWeight => 0.3kg;
 end RoomThermostat.impl;
-
--- Czujnik temperatury
-device TemperatureSensor
-features
-    current_temp: out data port Temperature;
-end TemperatureSensor;
-
-device implementation TemperatureSensor.impl
-end TemperatureSensor.impl;
 
 -- Zawór strefowy
 device ZoneValve
 features
     valve_control: in data port ValveCommand;
-	properties
-		WaterFlow::WaterFlowRate => 20;
+    conn_bus: requires bus access ConnBus;
 end ZoneValve;
 
 device implementation ZoneValve.impl
+	properties
+		SEI::GrossWeight => 0.33kg;
 end ZoneValve.impl;
 
-bus SchedulerToBoilerBus
-	features
-		input_1: in data port BoilerCommand;
-		input_2: in data port BoilerCommand;
-		output: out data port BoilerCommand;
-end SchedulerToBoilerBus;
+bus ConnBus
+end ConnBus;
 
-bus implementation SchedulerToBoilerBus.impl
-end SchedulerToBoilerBus.impl;
+bus implementation ConnBus.impl
+	properties
+		SEI::GrossWeight => 0.01kg;
+		SEI::BandwidthCapacity => 100.0 Mbps;
+		SEI::BandwidthBudget => 1.0 Mbps;
+end ConnBus.impl;
+
+
 -- Piec
 device Boiler
-features
+	features
     heat_demand: in data port HeatDemand;
     scheduler_command: in data port BoilerCommand;
-    boiler_control: out data port Temperature;
-    water_outtake: out data port Water;
     error_signal: in event port;
     emergency_mode: in event port;
+    conn_bus: requires bus access ConnBus;
 end Boiler;
 
 device implementation Boiler.impl
+	properties
+		SEI::GrossWeight => 15.0kg;
 end Boiler.impl;
-
--- Przełącznik awaryjny
-device EmergencySwitch
-features
-    emergency_mode: out event port;
-end EmergencySwitch;
-
-device implementation EmergencySwitch.impl
-end EmergencySwitch.impl;
 
 -- Wątek harmonogramu
 process Scheduler
-	features
-		zone1_setter: out data port BoilerCommand;
-		zone2_setter: out data port BoilerCommand;
+features
+	setter: out data port BoilerCommand;
 end Scheduler;
 
 process implementation Scheduler.impl
 end Scheduler.impl;
 
--- Wątek monitorujący
-process SafetyMonitor
-features
-    error_signal: out event port;
-end SafetyMonitor;
-
-process implementation SafetyMonitor.impl
-end SafetyMonitor.impl;
-
-device Distributor
+process Distributor
 	features
-		water_intake: in data port Water;
 		zone1_heat_demand: in data port HeatDemand;
 		zone2_heat_demand: in data port HeatDemand;
 		zone1_water_output: out data port ValveCommand;
 		zone2_water_output: out data port ValveCommand;
-		
 		total_heat_demand: out data port HeatDemand;
 end Distributor;
 
-device implementation Distributor.impl
+process implementation Distributor.impl
 end Distributor.impl;
 
 system implementation HeatingControlSystem.impl
 subcomponents
     scheduler: process Scheduler.impl;
-    safety: process SafetyMonitor.impl;
-	scheduler_boiler_bus: bus SchedulerToBoilerBus.impl;
+	conn_bus: bus ConnBus.impl;
     boiler: device Boiler.impl;
-    distributor: device Distributor.impl;
-    emergency: device EmergencySwitch.impl;
+    distributor: process Distributor.impl;
+    emergency: process EmergencySwitch.impl;
+    error: process ErrorSignal.impl;
 
     -- Strefa 1
     zone1_thermostat: device RoomThermostat.impl;
-    zone1_sensor: device TemperatureSensor.impl;
     zone1_valve: device ZoneValve.impl;
 
     -- Strefa 2
     zone2_thermostat: device RoomThermostat.impl;
-    zone2_sensor: device TemperatureSensor.impl;
     zone2_valve: device ZoneValve.impl;
+    
 
 	connections
-	water: port boiler.water_outtake -> distributor.water_intake;
-	heat_control: port distributor.total_heat_demand -> boiler.heat_demand;
-	scheduler_boiler: port scheduler_boiler_bus.output -> boiler.scheduler_command;
-    -- Strefa 1
-    conn1_1: port zone1_sensor.current_temp -> zone1_thermostat.current_temp;
-    conn1_2: port zone1_thermostat.heat_demand -> distributor.zone1_heat_demand;
-    conn1_3: port distributor.zone1_water_output -> zone1_valve.valve_control;
-    conn1_4: port boiler.boiler_control -> zone1_thermostat.set_temp;
-    conn1_5: port scheduler.zone1_setter -> scheduler_boiler_bus.input_1;
-
-    -- Strefa 2
-    conn2_1: port zone2_sensor.current_temp -> zone2_thermostat.current_temp;
-    conn2_2: port zone2_thermostat.heat_demand -> distributor.zone2_heat_demand;
-    conn2_3: port distributor.zone2_water_output -> zone2_valve.valve_control;
-    conn2_4: port boiler.boiler_control -> zone2_thermostat.set_temp;
-	conn2_5: port scheduler.zone2_setter -> scheduler_boiler_bus.input_2;
+	c2: bus access boiler.conn_bus <-> conn_bus
+	{
+		SEI::BandwidthBudget => 0.2Mbps;
+	};
+	c4: bus access zone1_thermostat.conn_bus <-> conn_bus
+	{
+		SEI::BandwidthBudget => 0.2Mbps;
+	};
+	c5: bus access zone2_thermostat.conn_bus <-> conn_bus
+	{
+		SEI::BandwidthBudget => 0.2Mbps;
+	};
+	c6: bus access zone1_valve.conn_bus <-> conn_bus
+	{
+		SEI::BandwidthBudget => 0.2Mbps;
+	};
+	c7: bus access zone2_valve.conn_bus <-> conn_bus
+	{
+		SEI::BandwidthBudget => 0.2Mbps;
+	};
 	
+	c8: bus access zone2_valve.conn_bus <-> conn_bus
+	{
+		SEI::BandwidthBudget => 0.2Mbps;
+	};
 	
-    -- Awarie i tryb awaryjny
-    conn7: port safety.error_signal -> boiler.error_signal;
-    conn8: port emergency.emergency_mode -> boiler.emergency_mode;
+	c9: port zone1_thermostat.heat_demand -> distributor.zone1_heat_demand;
+	c10: port zone2_thermostat.heat_demand -> distributor.zone2_heat_demand;
+	c11: port distributor.total_heat_demand -> boiler.heat_demand;
+	
+	c12: port distributor.zone1_water_output -> zone1_valve.valve_control;
+	c13: port distributor.zone2_water_output -> zone2_valve.valve_control;
+	c14: port scheduler.setter -> boiler.scheduler_command;
+	c15: port emergency.emergency_mode -> boiler.emergency_mode;
+	c16: port error.error -> boiler.error_signal;
+	
 
+	properties
+		Actual_Connection_Binding => (reference(boiler)) applies to scheduler;
+		Actual_Connection_Binding => (reference(boiler)) applies to distributor;
 end HeatingControlSystem.impl;
 
 end HeatingSystem;

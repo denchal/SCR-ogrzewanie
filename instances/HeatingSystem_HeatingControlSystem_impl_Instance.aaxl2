@@ -1,267 +1,483 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aadl2="http://aadl.info/AADL/2.0" xmlns:instance="http://aadl.info/AADL/2.0/instance">
   <instance:SystemInstance name="HeatingControlSystem_impl_Instance" category="system">
-    <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
-      <property href="../WaterFlow.aadl#WaterFlow.MaxTotalFlow"/>
-      <ownedValue>
-        <ownedValue xsi:type="aadl2:IntegerLiteral" value="100"/>
-      </ownedValue>
-      <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.5/@ownedPropertyAssociation.0"/>
-    </ownedPropertyAssociation>
-    <featureInstance name="emergency_mode" category="eventPort">
-      <feature xsi:type="aadl2:EventPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.5/@ownedEventPort.0"/>
-    </featureInstance>
-    <componentInstance name="scheduler_boiler_bus" category="bus">
-      <featureInstance name="input_1" type="/1">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.12/@ownedDataPort.0"/>
-      </featureInstance>
-      <featureInstance name="input_2" type="/1">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.12/@ownedDataPort.1"/>
-      </featureInstance>
-      <featureInstance name="output" direction="out" type="/1">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.12/@ownedDataPort.2"/>
-      </featureInstance>
-      <subcomponent xsi:type="aadl2:BusSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedBusSubcomponent.0"/>
+    <componentInstance name="conn_bus" category="bus">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.BandWidthBudget"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="1.0">
+            <unit href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.17/@ownedLiteral.2"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.14/@ownedPropertyAssociation.2"/>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.GrossWeight"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="0.01">
+            <unit href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#/0/@ownedPropertyType.0/@ownedLiteral.0"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.14/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.BandWidthCapacity"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="100.0">
+            <unit href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.17/@ownedLiteral.2"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.14/@ownedPropertyAssociation.1"/>
+      </ownedPropertyAssociation>
+      <subcomponent xsi:type="aadl2:BusSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedBusSubcomponent.0"/>
       <index>0</index>
-      <classifier xsi:type="aadl2:BusImplementation" href="../HeatingSystem.aadl#HeatingSystem.SchedulerToBoilerBus.impl"/>
+      <classifier xsi:type="aadl2:BusImplementation" href="../HeatingSystem.aadl#HeatingSystem.ConnBus.impl"/>
     </componentInstance>
     <componentInstance name="boiler" category="device">
-      <featureInstance name="heat_demand" type="/2">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.14/@ownedDataPort.0"/>
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.GrossWeight"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="15.0">
+            <unit href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#/0/@ownedPropertyType.0/@ownedLiteral.0"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.16/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <featureInstance name="heat_demand" type="/1">
+        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.15/@ownedDataPort.0"/>
       </featureInstance>
-      <featureInstance name="scheduler_command" type="/1">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.14/@ownedDataPort.1"/>
-      </featureInstance>
-      <featureInstance name="boiler_control" direction="out" type="/3">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.14/@ownedDataPort.2"/>
-      </featureInstance>
-      <featureInstance name="water_outtake" direction="out" type="/4">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.14/@ownedDataPort.3"/>
+      <featureInstance name="scheduler_command" type="/2">
+        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.15/@ownedDataPort.1"/>
       </featureInstance>
       <featureInstance name="error_signal" category="eventPort">
-        <feature xsi:type="aadl2:EventPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.14/@ownedEventPort.0"/>
+        <feature xsi:type="aadl2:EventPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.15/@ownedEventPort.0"/>
       </featureInstance>
       <featureInstance name="emergency_mode" category="eventPort">
-        <feature xsi:type="aadl2:EventPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.14/@ownedEventPort.1"/>
+        <feature xsi:type="aadl2:EventPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.15/@ownedEventPort.1"/>
       </featureInstance>
-      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedDeviceSubcomponent.0"/>
+      <featureInstance name="conn_bus" category="busAccess" type="/3">
+        <feature xsi:type="aadl2:BusAccess" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.15/@ownedBusAccess.0"/>
+      </featureInstance>
+      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedDeviceSubcomponent.0"/>
       <index>0</index>
       <classifier xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.Boiler.impl"/>
     </componentInstance>
-    <componentInstance name="distributor" category="device">
-      <featureInstance name="water_intake" type="/4">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.22/@ownedDataPort.0"/>
-      </featureInstance>
-      <featureInstance name="zone1_heat_demand" type="/2">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.22/@ownedDataPort.1"/>
-      </featureInstance>
-      <featureInstance name="zone2_heat_demand" type="/2">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.22/@ownedDataPort.2"/>
-      </featureInstance>
-      <featureInstance name="zone1_water_output" direction="out" type="/5">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.22/@ownedDataPort.3"/>
-      </featureInstance>
-      <featureInstance name="zone2_water_output" direction="out" type="/5">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.22/@ownedDataPort.4"/>
-      </featureInstance>
-      <featureInstance name="total_heat_demand" direction="out" type="/2">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.22/@ownedDataPort.5"/>
-      </featureInstance>
-      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedDeviceSubcomponent.1"/>
-      <index>0</index>
-      <classifier xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.Distributor.impl"/>
-    </componentInstance>
-    <componentInstance name="emergency" category="device">
-      <featureInstance name="emergency_mode" category="eventPort" direction="out">
-        <feature xsi:type="aadl2:EventPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.16/@ownedEventPort.0"/>
-      </featureInstance>
-      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedDeviceSubcomponent.2"/>
-      <index>0</index>
-      <classifier xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.EmergencySwitch.impl"/>
-    </componentInstance>
     <componentInstance name="zone1_thermostat" category="device">
-      <featureInstance name="set_temp" type="/3">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedDataPort.0"/>
-      </featureInstance>
-      <featureInstance name="current_temp" type="/3">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedDataPort.1"/>
-      </featureInstance>
-      <featureInstance name="heat_demand" direction="out" type="/2">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedDataPort.2"/>
-      </featureInstance>
-      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedDeviceSubcomponent.3"/>
-      <index>0</index>
-      <classifier xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.RoomThermostat.impl"/>
-    </componentInstance>
-    <componentInstance name="zone1_sensor" category="device">
-      <featureInstance name="current_temp" direction="out" type="/3">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.8/@ownedDataPort.0"/>
-      </featureInstance>
-      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedDeviceSubcomponent.4"/>
-      <index>0</index>
-      <classifier xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.TemperatureSensor.impl"/>
-    </componentInstance>
-    <componentInstance name="zone1_valve" category="device">
       <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
-        <property href="../WaterFlow.aadl#WaterFlow.WaterFlowRate"/>
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.GrossWeight"/>
         <ownedValue>
-          <ownedValue xsi:type="aadl2:IntegerLiteral" value="20"/>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="0.3">
+            <unit href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#/0/@ownedPropertyType.0/@ownedLiteral.0"/>
+          </ownedValue>
         </ownedValue>
         <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.10/@ownedPropertyAssociation.0"/>
       </ownedPropertyAssociation>
-      <featureInstance name="valve_control" type="/5">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.10/@ownedDataPort.0"/>
+      <featureInstance name="heat_demand" direction="out" type="/1">
+        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.9/@ownedDataPort.0"/>
       </featureInstance>
-      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedDeviceSubcomponent.5"/>
+      <featureInstance name="conn_bus" category="busAccess" type="/3">
+        <feature xsi:type="aadl2:BusAccess" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.9/@ownedBusAccess.0"/>
+      </featureInstance>
+      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedDeviceSubcomponent.1"/>
+      <index>0</index>
+      <classifier xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.RoomThermostat.impl"/>
+    </componentInstance>
+    <componentInstance name="zone1_valve" category="device">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.GrossWeight"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="0.33">
+            <unit href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#/0/@ownedPropertyType.0/@ownedLiteral.0"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.12/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <featureInstance name="valve_control" type="/4">
+        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.11/@ownedDataPort.0"/>
+      </featureInstance>
+      <featureInstance name="conn_bus" category="busAccess" type="/3">
+        <feature xsi:type="aadl2:BusAccess" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.11/@ownedBusAccess.0"/>
+      </featureInstance>
+      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedDeviceSubcomponent.2"/>
       <index>0</index>
       <classifier xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.ZoneValve.impl"/>
     </componentInstance>
     <componentInstance name="zone2_thermostat" category="device">
-      <featureInstance name="set_temp" type="/3">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedDataPort.0"/>
-      </featureInstance>
-      <featureInstance name="current_temp" type="/3">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedDataPort.1"/>
-      </featureInstance>
-      <featureInstance name="heat_demand" direction="out" type="/2">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedDataPort.2"/>
-      </featureInstance>
-      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedDeviceSubcomponent.6"/>
-      <index>0</index>
-      <classifier xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.RoomThermostat.impl"/>
-    </componentInstance>
-    <componentInstance name="zone2_sensor" category="device">
-      <featureInstance name="current_temp" direction="out" type="/3">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.8/@ownedDataPort.0"/>
-      </featureInstance>
-      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedDeviceSubcomponent.7"/>
-      <index>0</index>
-      <classifier xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.TemperatureSensor.impl"/>
-    </componentInstance>
-    <componentInstance name="zone2_valve" category="device">
       <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
-        <property href="../WaterFlow.aadl#WaterFlow.WaterFlowRate"/>
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.GrossWeight"/>
         <ownedValue>
-          <ownedValue xsi:type="aadl2:IntegerLiteral" value="20"/>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="0.3">
+            <unit href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#/0/@ownedPropertyType.0/@ownedLiteral.0"/>
+          </ownedValue>
         </ownedValue>
         <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.10/@ownedPropertyAssociation.0"/>
       </ownedPropertyAssociation>
-      <featureInstance name="valve_control" type="/5">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.10/@ownedDataPort.0"/>
+      <featureInstance name="heat_demand" direction="out" type="/1">
+        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.9/@ownedDataPort.0"/>
       </featureInstance>
-      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedDeviceSubcomponent.8"/>
+      <featureInstance name="conn_bus" category="busAccess" type="/3">
+        <feature xsi:type="aadl2:BusAccess" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.9/@ownedBusAccess.0"/>
+      </featureInstance>
+      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedDeviceSubcomponent.3"/>
+      <index>0</index>
+      <classifier xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.RoomThermostat.impl"/>
+    </componentInstance>
+    <componentInstance name="zone2_valve" category="device">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.GrossWeight"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="0.33">
+            <unit href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#/0/@ownedPropertyType.0/@ownedLiteral.0"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.12/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <featureInstance name="valve_control" type="/4">
+        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.11/@ownedDataPort.0"/>
+      </featureInstance>
+      <featureInstance name="conn_bus" category="busAccess" type="/3">
+        <feature xsi:type="aadl2:BusAccess" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.11/@ownedBusAccess.0"/>
+      </featureInstance>
+      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedDeviceSubcomponent.4"/>
       <index>0</index>
       <classifier xsi:type="aadl2:DeviceImplementation" href="../HeatingSystem.aadl#HeatingSystem.ZoneValve.impl"/>
     </componentInstance>
     <componentInstance name="scheduler" category="process">
-      <featureInstance name="zone1_setter" direction="out" type="/1">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.18/@ownedDataPort.0"/>
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/Deployment_Properties.aadl#Deployment_Properties.Actual_Connection_Binding"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:ListValue">
+            <ownedListElement xsi:type="instance:InstanceReferenceValue" referencedInstanceObject="/0/@componentInstance.1"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <featureInstance name="setter" direction="out" type="/2">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/Deployment_Properties.aadl#Deployment_Properties.Actual_Connection_Binding"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:ListValue">
+              <ownedListElement xsi:type="instance:InstanceReferenceValue" referencedInstanceObject="/0/@componentInstance.1"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.17/@ownedDataPort.0"/>
       </featureInstance>
-      <featureInstance name="zone2_setter" direction="out" type="/1">
-        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.18/@ownedDataPort.1"/>
-      </featureInstance>
-      <subcomponent xsi:type="aadl2:ProcessSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedProcessSubcomponent.0"/>
+      <subcomponent xsi:type="aadl2:ProcessSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedProcessSubcomponent.0"/>
       <index>0</index>
       <classifier xsi:type="aadl2:ProcessImplementation" href="../HeatingSystem.aadl#HeatingSystem.Scheduler.impl"/>
     </componentInstance>
-    <componentInstance name="safety" category="process">
-      <featureInstance name="error_signal" category="eventPort" direction="out">
-        <feature xsi:type="aadl2:EventPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.20/@ownedEventPort.0"/>
+    <componentInstance name="distributor" category="process">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/Deployment_Properties.aadl#Deployment_Properties.Actual_Connection_Binding"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:ListValue">
+            <ownedListElement xsi:type="instance:InstanceReferenceValue" referencedInstanceObject="/0/@componentInstance.1"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedPropertyAssociation.1"/>
+      </ownedPropertyAssociation>
+      <featureInstance name="zone1_heat_demand" type="/1">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/Deployment_Properties.aadl#Deployment_Properties.Actual_Connection_Binding"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:ListValue">
+              <ownedListElement xsi:type="instance:InstanceReferenceValue" referencedInstanceObject="/0/@componentInstance.1"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedPropertyAssociation.1"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.19/@ownedDataPort.0"/>
       </featureInstance>
-      <subcomponent xsi:type="aadl2:ProcessSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedProcessSubcomponent.1"/>
+      <featureInstance name="zone2_heat_demand" type="/1">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/Deployment_Properties.aadl#Deployment_Properties.Actual_Connection_Binding"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:ListValue">
+              <ownedListElement xsi:type="instance:InstanceReferenceValue" referencedInstanceObject="/0/@componentInstance.1"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedPropertyAssociation.1"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.19/@ownedDataPort.1"/>
+      </featureInstance>
+      <featureInstance name="zone1_water_output" direction="out" type="/4">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/Deployment_Properties.aadl#Deployment_Properties.Actual_Connection_Binding"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:ListValue">
+              <ownedListElement xsi:type="instance:InstanceReferenceValue" referencedInstanceObject="/0/@componentInstance.1"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedPropertyAssociation.1"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.19/@ownedDataPort.2"/>
+      </featureInstance>
+      <featureInstance name="zone2_water_output" direction="out" type="/4">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/Deployment_Properties.aadl#Deployment_Properties.Actual_Connection_Binding"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:ListValue">
+              <ownedListElement xsi:type="instance:InstanceReferenceValue" referencedInstanceObject="/0/@componentInstance.1"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedPropertyAssociation.1"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.19/@ownedDataPort.3"/>
+      </featureInstance>
+      <featureInstance name="total_heat_demand" direction="out" type="/1">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/Deployment_Properties.aadl#Deployment_Properties.Actual_Connection_Binding"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:ListValue">
+              <ownedListElement xsi:type="instance:InstanceReferenceValue" referencedInstanceObject="/0/@componentInstance.1"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedPropertyAssociation.1"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.19/@ownedDataPort.4"/>
+      </featureInstance>
+      <subcomponent xsi:type="aadl2:ProcessSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedProcessSubcomponent.1"/>
       <index>0</index>
-      <classifier xsi:type="aadl2:ProcessImplementation" href="../HeatingSystem.aadl#HeatingSystem.SafetyMonitor.impl"/>
+      <classifier xsi:type="aadl2:ProcessImplementation" href="../HeatingSystem.aadl#HeatingSystem.Distributor.impl"/>
     </componentInstance>
-    <connectionInstance name="scheduler_boiler_bus.output -> boiler.scheduler_command" complete="true" kind="portConnection" destination="/0/@componentInstance.1/@featureInstance.1" source="/0/@componentInstance.0/@featureInstance.2">
-      <connectionReference context="/0" source="/0/@componentInstance.0/@featureInstance.2" destination="/0/@componentInstance.1/@featureInstance.1">
-        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedPortConnection.2"/>
+    <componentInstance name="emergency" category="process">
+      <featureInstance name="emergency_mode" category="eventPort" direction="out">
+        <feature xsi:type="aadl2:EventPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.5/@ownedEventPort.0"/>
+      </featureInstance>
+      <subcomponent xsi:type="aadl2:ProcessSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedProcessSubcomponent.2"/>
+      <index>0</index>
+      <classifier xsi:type="aadl2:ProcessImplementation" href="../HeatingSystem.aadl#HeatingSystem.EmergencySwitch.impl"/>
+    </componentInstance>
+    <componentInstance name="error" category="process">
+      <featureInstance name="error" category="eventPort" direction="out">
+        <feature xsi:type="aadl2:EventPort" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.7/@ownedEventPort.0"/>
+      </featureInstance>
+      <subcomponent xsi:type="aadl2:ProcessSubcomponent" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedProcessSubcomponent.3"/>
+      <index>0</index>
+      <classifier xsi:type="aadl2:ProcessImplementation" href="../HeatingSystem.aadl#HeatingSystem.ErrorSignal.impl"/>
+    </componentInstance>
+    <connectionInstance name="conn_bus -> boiler.conn_bus" complete="true" kind="accessConnection" destination="/0/@componentInstance.1/@featureInstance.4" source="/0/@componentInstance.0">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.BandWidthBudget"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="0.2">
+            <unit href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.17/@ownedLiteral.2"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.0/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <connectionReference context="/0" source="/0/@componentInstance.0" destination="/0/@componentInstance.1/@featureInstance.4" reverse="true">
+        <connection xsi:type="aadl2:AccessConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.0"/>
       </connectionReference>
     </connectionInstance>
-    <connectionInstance name="boiler.boiler_control -> zone1_thermostat.set_temp" complete="true" kind="portConnection" destination="/0/@componentInstance.4/@featureInstance.0" source="/0/@componentInstance.1/@featureInstance.2">
-      <connectionReference context="/0" source="/0/@componentInstance.1/@featureInstance.2" destination="/0/@componentInstance.4/@featureInstance.0">
-        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedPortConnection.6"/>
+    <connectionInstance name="conn_bus -> zone1_thermostat.conn_bus" complete="true" kind="accessConnection" destination="/0/@componentInstance.2/@featureInstance.1" source="/0/@componentInstance.0">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.BandWidthBudget"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="0.2">
+            <unit href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.17/@ownedLiteral.2"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.1/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <connectionReference context="/0" source="/0/@componentInstance.0" destination="/0/@componentInstance.2/@featureInstance.1" reverse="true">
+        <connection xsi:type="aadl2:AccessConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.1"/>
       </connectionReference>
     </connectionInstance>
-    <connectionInstance name="boiler.boiler_control -> zone2_thermostat.set_temp" complete="true" kind="portConnection" destination="/0/@componentInstance.7/@featureInstance.0" source="/0/@componentInstance.1/@featureInstance.2">
-      <connectionReference context="/0" source="/0/@componentInstance.1/@featureInstance.2" destination="/0/@componentInstance.7/@featureInstance.0">
-        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedPortConnection.11"/>
+    <connectionInstance name="conn_bus -> zone2_thermostat.conn_bus" complete="true" kind="accessConnection" destination="/0/@componentInstance.4/@featureInstance.1" source="/0/@componentInstance.0">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.BandWidthBudget"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="0.2">
+            <unit href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.17/@ownedLiteral.2"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.2/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <connectionReference context="/0" source="/0/@componentInstance.0" destination="/0/@componentInstance.4/@featureInstance.1" reverse="true">
+        <connection xsi:type="aadl2:AccessConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.2"/>
       </connectionReference>
     </connectionInstance>
-    <connectionInstance name="boiler.water_outtake -> distributor.water_intake" complete="true" kind="portConnection" destination="/0/@componentInstance.2/@featureInstance.0" source="/0/@componentInstance.1/@featureInstance.3">
-      <connectionReference context="/0" source="/0/@componentInstance.1/@featureInstance.3" destination="/0/@componentInstance.2/@featureInstance.0">
-        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedPortConnection.0"/>
+    <connectionInstance name="conn_bus -> zone1_valve.conn_bus" complete="true" kind="accessConnection" destination="/0/@componentInstance.3/@featureInstance.1" source="/0/@componentInstance.0">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.BandWidthBudget"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="0.2">
+            <unit href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.17/@ownedLiteral.2"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.3/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <connectionReference context="/0" source="/0/@componentInstance.0" destination="/0/@componentInstance.3/@featureInstance.1" reverse="true">
+        <connection xsi:type="aadl2:AccessConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.3"/>
       </connectionReference>
     </connectionInstance>
-    <connectionInstance name="distributor.zone1_water_output -> zone1_valve.valve_control" complete="true" kind="portConnection" destination="/0/@componentInstance.6/@featureInstance.0" source="/0/@componentInstance.2/@featureInstance.3">
-      <connectionReference context="/0" source="/0/@componentInstance.2/@featureInstance.3" destination="/0/@componentInstance.6/@featureInstance.0">
-        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedPortConnection.5"/>
+    <connectionInstance name="conn_bus -> zone2_valve.conn_bus" complete="true" kind="accessConnection" destination="/0/@componentInstance.5/@featureInstance.1" source="/0/@componentInstance.0">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.BandWidthBudget"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="0.2">
+            <unit href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.17/@ownedLiteral.2"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.4/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <connectionReference context="/0" source="/0/@componentInstance.0" destination="/0/@componentInstance.5/@featureInstance.1" reverse="true">
+        <connection xsi:type="aadl2:AccessConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.4"/>
       </connectionReference>
     </connectionInstance>
-    <connectionInstance name="distributor.zone2_water_output -> zone2_valve.valve_control" complete="true" kind="portConnection" destination="/0/@componentInstance.9/@featureInstance.0" source="/0/@componentInstance.2/@featureInstance.4">
-      <connectionReference context="/0" source="/0/@componentInstance.2/@featureInstance.4" destination="/0/@componentInstance.9/@featureInstance.0">
-        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedPortConnection.10"/>
+    <connectionInstance name="conn_bus -> zone2_valve.conn_bus" complete="true" kind="accessConnection" destination="/0/@componentInstance.5/@featureInstance.1" source="/0/@componentInstance.0">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.BandWidthBudget"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="0.2">
+            <unit href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.17/@ownedLiteral.2"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.5/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <connectionReference context="/0" source="/0/@componentInstance.0" destination="/0/@componentInstance.5/@featureInstance.1" reverse="true">
+        <connection xsi:type="aadl2:AccessConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.5"/>
       </connectionReference>
     </connectionInstance>
-    <connectionInstance name="distributor.total_heat_demand -> boiler.heat_demand" complete="true" kind="portConnection" destination="/0/@componentInstance.1/@featureInstance.0" source="/0/@componentInstance.2/@featureInstance.5">
-      <connectionReference context="/0" source="/0/@componentInstance.2/@featureInstance.5" destination="/0/@componentInstance.1/@featureInstance.0">
-        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedPortConnection.1"/>
+    <connectionInstance name="boiler.conn_bus -> conn_bus" complete="true" kind="accessConnection" destination="/0/@componentInstance.0" source="/0/@componentInstance.1/@featureInstance.4">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.BandWidthBudget"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="0.2">
+            <unit href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.17/@ownedLiteral.2"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.0/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <connectionReference context="/0" source="/0/@componentInstance.1/@featureInstance.4" destination="/0/@componentInstance.0">
+        <connection xsi:type="aadl2:AccessConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.0"/>
       </connectionReference>
     </connectionInstance>
-    <connectionInstance name="emergency.emergency_mode -> boiler.emergency_mode" complete="true" kind="portConnection" destination="/0/@componentInstance.1/@featureInstance.5" source="/0/@componentInstance.3/@featureInstance.0">
-      <connectionReference context="/0" source="/0/@componentInstance.3/@featureInstance.0" destination="/0/@componentInstance.1/@featureInstance.5">
-        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedPortConnection.14"/>
+    <connectionInstance name="zone1_thermostat.heat_demand -> distributor.zone1_heat_demand" complete="true" kind="portConnection" destination="/0/@componentInstance.7/@featureInstance.0" source="/0/@componentInstance.2/@featureInstance.0">
+      <connectionReference context="/0" source="/0/@componentInstance.2/@featureInstance.0" destination="/0/@componentInstance.7/@featureInstance.0">
+        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedPortConnection.0"/>
       </connectionReference>
     </connectionInstance>
-    <connectionInstance name="zone1_thermostat.heat_demand -> distributor.zone1_heat_demand" complete="true" kind="portConnection" destination="/0/@componentInstance.2/@featureInstance.1" source="/0/@componentInstance.4/@featureInstance.2">
-      <connectionReference context="/0" source="/0/@componentInstance.4/@featureInstance.2" destination="/0/@componentInstance.2/@featureInstance.1">
-        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedPortConnection.4"/>
+    <connectionInstance name="zone1_thermostat.conn_bus -> conn_bus" complete="true" kind="accessConnection" destination="/0/@componentInstance.0" source="/0/@componentInstance.2/@featureInstance.1">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.BandWidthBudget"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="0.2">
+            <unit href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.17/@ownedLiteral.2"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.1/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <connectionReference context="/0" source="/0/@componentInstance.2/@featureInstance.1" destination="/0/@componentInstance.0">
+        <connection xsi:type="aadl2:AccessConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.1"/>
       </connectionReference>
     </connectionInstance>
-    <connectionInstance name="zone1_sensor.current_temp -> zone1_thermostat.current_temp" complete="true" kind="portConnection" destination="/0/@componentInstance.4/@featureInstance.1" source="/0/@componentInstance.5/@featureInstance.0">
-      <connectionReference context="/0" source="/0/@componentInstance.5/@featureInstance.0" destination="/0/@componentInstance.4/@featureInstance.1">
-        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedPortConnection.3"/>
+    <connectionInstance name="zone1_valve.conn_bus -> conn_bus" complete="true" kind="accessConnection" destination="/0/@componentInstance.0" source="/0/@componentInstance.3/@featureInstance.1">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.BandWidthBudget"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="0.2">
+            <unit href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.17/@ownedLiteral.2"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.3/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <connectionReference context="/0" source="/0/@componentInstance.3/@featureInstance.1" destination="/0/@componentInstance.0">
+        <connection xsi:type="aadl2:AccessConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.3"/>
       </connectionReference>
     </connectionInstance>
-    <connectionInstance name="zone2_thermostat.heat_demand -> distributor.zone2_heat_demand" complete="true" kind="portConnection" destination="/0/@componentInstance.2/@featureInstance.2" source="/0/@componentInstance.7/@featureInstance.2">
-      <connectionReference context="/0" source="/0/@componentInstance.7/@featureInstance.2" destination="/0/@componentInstance.2/@featureInstance.2">
-        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedPortConnection.9"/>
+    <connectionInstance name="zone2_thermostat.heat_demand -> distributor.zone2_heat_demand" complete="true" kind="portConnection" destination="/0/@componentInstance.7/@featureInstance.1" source="/0/@componentInstance.4/@featureInstance.0">
+      <connectionReference context="/0" source="/0/@componentInstance.4/@featureInstance.0" destination="/0/@componentInstance.7/@featureInstance.1">
+        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedPortConnection.1"/>
       </connectionReference>
     </connectionInstance>
-    <connectionInstance name="zone2_sensor.current_temp -> zone2_thermostat.current_temp" complete="true" kind="portConnection" destination="/0/@componentInstance.7/@featureInstance.1" source="/0/@componentInstance.8/@featureInstance.0">
-      <connectionReference context="/0" source="/0/@componentInstance.8/@featureInstance.0" destination="/0/@componentInstance.7/@featureInstance.1">
-        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedPortConnection.8"/>
+    <connectionInstance name="zone2_thermostat.conn_bus -> conn_bus" complete="true" kind="accessConnection" destination="/0/@componentInstance.0" source="/0/@componentInstance.4/@featureInstance.1">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.BandWidthBudget"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="0.2">
+            <unit href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.17/@ownedLiteral.2"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.2/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <connectionReference context="/0" source="/0/@componentInstance.4/@featureInstance.1" destination="/0/@componentInstance.0">
+        <connection xsi:type="aadl2:AccessConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.2"/>
       </connectionReference>
     </connectionInstance>
-    <connectionInstance name="scheduler.zone1_setter -> scheduler_boiler_bus.input_1" complete="true" kind="portConnection" destination="/0/@componentInstance.0/@featureInstance.0" source="/0/@componentInstance.10/@featureInstance.0">
-      <connectionReference context="/0" source="/0/@componentInstance.10/@featureInstance.0" destination="/0/@componentInstance.0/@featureInstance.0">
-        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedPortConnection.7"/>
+    <connectionInstance name="zone2_valve.conn_bus -> conn_bus" complete="true" kind="accessConnection" destination="/0/@componentInstance.0" source="/0/@componentInstance.5/@featureInstance.1">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.BandWidthBudget"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="0.2">
+            <unit href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.17/@ownedLiteral.2"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.4/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <connectionReference context="/0" source="/0/@componentInstance.5/@featureInstance.1" destination="/0/@componentInstance.0">
+        <connection xsi:type="aadl2:AccessConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.4"/>
       </connectionReference>
     </connectionInstance>
-    <connectionInstance name="scheduler.zone2_setter -> scheduler_boiler_bus.input_2" complete="true" kind="portConnection" destination="/0/@componentInstance.0/@featureInstance.1" source="/0/@componentInstance.10/@featureInstance.1">
-      <connectionReference context="/0" source="/0/@componentInstance.10/@featureInstance.1" destination="/0/@componentInstance.0/@featureInstance.1">
-        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedPortConnection.12"/>
+    <connectionInstance name="zone2_valve.conn_bus -> conn_bus" complete="true" kind="accessConnection" destination="/0/@componentInstance.0" source="/0/@componentInstance.5/@featureInstance.1">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/SEI.aadl#SEI.BandWidthBudget"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RealLiteral" value="0.2">
+            <unit href="platform:/plugin/org.osate.aadl2.contrib/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.17/@ownedLiteral.2"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.5/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <connectionReference context="/0" source="/0/@componentInstance.5/@featureInstance.1" destination="/0/@componentInstance.0">
+        <connection xsi:type="aadl2:AccessConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedAccessConnection.5"/>
       </connectionReference>
     </connectionInstance>
-    <connectionInstance name="safety.error_signal -> boiler.error_signal" complete="true" kind="portConnection" destination="/0/@componentInstance.1/@featureInstance.4" source="/0/@componentInstance.11/@featureInstance.0">
-      <connectionReference context="/0" source="/0/@componentInstance.11/@featureInstance.0" destination="/0/@componentInstance.1/@featureInstance.4">
-        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.24/@ownedPortConnection.13"/>
+    <connectionInstance name="scheduler.setter -> boiler.scheduler_command" complete="true" kind="portConnection" destination="/0/@componentInstance.1/@featureInstance.1" source="/0/@componentInstance.6/@featureInstance.0">
+      <connectionReference context="/0" source="/0/@componentInstance.6/@featureInstance.0" destination="/0/@componentInstance.1/@featureInstance.1">
+        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedPortConnection.5"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance name="distributor.zone1_water_output -> zone1_valve.valve_control" complete="true" kind="portConnection" destination="/0/@componentInstance.3/@featureInstance.0" source="/0/@componentInstance.7/@featureInstance.2">
+      <connectionReference context="/0" source="/0/@componentInstance.7/@featureInstance.2" destination="/0/@componentInstance.3/@featureInstance.0">
+        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedPortConnection.3"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance name="distributor.zone2_water_output -> zone2_valve.valve_control" complete="true" kind="portConnection" destination="/0/@componentInstance.5/@featureInstance.0" source="/0/@componentInstance.7/@featureInstance.3">
+      <connectionReference context="/0" source="/0/@componentInstance.7/@featureInstance.3" destination="/0/@componentInstance.5/@featureInstance.0">
+        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedPortConnection.4"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance name="distributor.total_heat_demand -> boiler.heat_demand" complete="true" kind="portConnection" destination="/0/@componentInstance.1/@featureInstance.0" source="/0/@componentInstance.7/@featureInstance.4">
+      <connectionReference context="/0" source="/0/@componentInstance.7/@featureInstance.4" destination="/0/@componentInstance.1/@featureInstance.0">
+        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedPortConnection.2"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance name="emergency.emergency_mode -> boiler.emergency_mode" complete="true" kind="portConnection" destination="/0/@componentInstance.1/@featureInstance.3" source="/0/@componentInstance.8/@featureInstance.0">
+      <connectionReference context="/0" source="/0/@componentInstance.8/@featureInstance.0" destination="/0/@componentInstance.1/@featureInstance.3">
+        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedPortConnection.6"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance name="error.error -> boiler.error_signal" complete="true" kind="portConnection" destination="/0/@componentInstance.1/@featureInstance.2" source="/0/@componentInstance.9/@featureInstance.0">
+      <connectionReference context="/0" source="/0/@componentInstance.9/@featureInstance.0" destination="/0/@componentInstance.1/@featureInstance.2">
+        <connection xsi:type="aadl2:PortConnection" href="../HeatingSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.21/@ownedPortConnection.7"/>
       </connectionReference>
     </connectionInstance>
     <classifier xsi:type="aadl2:SystemImplementation" href="../HeatingSystem.aadl#HeatingSystem.HeatingControlSystem.impl"/>
     <systemOperationMode name="No Modes"/>
     <componentImplementation xsi:type="aadl2:SystemImplementation" href="../HeatingSystem.aadl#HeatingSystem.HeatingControlSystem.impl"/>
   </instance:SystemInstance>
-  <instance:ComponentInstance name="HeatingSystem::BoilerCommand" category="data">
-    <classifier xsi:type="aadl2:DataType" href="../HeatingSystem.aadl#HeatingSystem.BoilerCommand"/>
-  </instance:ComponentInstance>
   <instance:ComponentInstance name="HeatingSystem::HeatDemand" category="data">
     <classifier xsi:type="aadl2:DataType" href="../HeatingSystem.aadl#HeatingSystem.HeatDemand"/>
   </instance:ComponentInstance>
-  <instance:ComponentInstance name="HeatingSystem::Temperature" category="data">
-    <classifier xsi:type="aadl2:DataType" href="../HeatingSystem.aadl#HeatingSystem.Temperature"/>
+  <instance:ComponentInstance name="HeatingSystem::BoilerCommand" category="data">
+    <classifier xsi:type="aadl2:DataType" href="../HeatingSystem.aadl#HeatingSystem.BoilerCommand"/>
   </instance:ComponentInstance>
-  <instance:ComponentInstance name="HeatingSystem::Water" category="data">
-    <classifier xsi:type="aadl2:DataType" href="../HeatingSystem.aadl#HeatingSystem.Water"/>
+  <instance:ComponentInstance name="HeatingSystem::ConnBus" category="bus">
+    <classifier xsi:type="aadl2:BusType" href="../HeatingSystem.aadl#HeatingSystem.ConnBus"/>
   </instance:ComponentInstance>
   <instance:ComponentInstance name="HeatingSystem::ValveCommand" category="data">
     <classifier xsi:type="aadl2:DataType" href="../HeatingSystem.aadl#HeatingSystem.ValveCommand"/>
